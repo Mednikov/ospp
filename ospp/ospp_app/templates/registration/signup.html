@@ -1,0 +1,51 @@
+{% extends "registration\registration_base.html" %}
+
+
+{% block title %}Зарегистрироваться — ОСПП{% endblock %}
+
+{% block registration %}
+<!-- SIGNUP FORM -->
+<div id="login" class="signiup">
+
+  <div id="login-header" class="dark-bg text-center">
+    <h4>Создать аккаунт</h4>
+  </div>
+
+  <div id="login-body">
+    <form method="post">
+    {% csrf_token %}
+      {% if form.errors %}
+      <div class="form-group">
+        <p class="text-danger text-center">
+          Обнаружены ошибки при заполнении формы.<br>
+          Пожалуйста, попробуйте еще раз.
+        </p>
+      </div>
+      {% endif %}
+      <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+          {{ form.username }}
+        </div>
+      </div>
+      <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></div>
+          {{ form.email }}
+        </div>
+      </div>
+      <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-lock fa-fw"></i></div>
+          {{ form.password }}
+        </div>
+      </div>
+        <input class="btn btn-green btn-block btn-lg" type="submit" value="Зарегистрироваться">
+    </form>
+  </div>
+
+  <div id="login-footer" class="text-center">
+    <span class="text-secondary">Уже есть аккаунт?</span> <a href="{% url 'login' %}">Войти</a>
+  </div>
+</div>
+{% endblock %}

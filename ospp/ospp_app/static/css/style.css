@@ -543,6 +543,8 @@ header {
     padding: 15px 20px; }
   #login #login-header {
     background: #55425e; }
+    #login #login-header h4 {
+      margin-bottom: 0; }
   #login #login-body {
     padding: 20px;
     background: #fff; }

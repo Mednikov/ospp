@@ -263,6 +263,10 @@ header{
 
     #login-header{
         background: $brand;
+
+        h4{
+            margin-bottom: 0;
+        }
     }
 
     #login-body{
