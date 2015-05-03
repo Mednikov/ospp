@@ -108,6 +108,9 @@ STATICFILES_DIRS  = (
 )
 STATIC_ROOT = "C:/webprojects/ospp/ospp/static/"
 
+LOGIN_REDIRECT_URL = '/projects/'
+LOGIN_URL = 'django.contrib.auth.views.login'
+
 
 try:
     from clearspending_project.local_settings import *

@@ -1,0 +1,50 @@
+{% extends "registration\registration_base.html" %}
+
+
+{% block title %}Войти — ОСПП{% endblock %}
+
+{% block registration %}
+<!-- LOGIN FORM -->
+<div id="login">
+
+  <div id="login-header" class="dark-bg text-center">
+    <h4>Войти в свой аккаунт</h4>
+  </div>
+
+  <div id="login-body">
+
+    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    {% csrf_token %}
+      {% if form.errors %}
+      <div class="form-group">
+        <p class="text-danger text-center">Введённая пара логин\пароль не подходит. <br> Пожалуйста, попробуйте еще раз.</p>
+      </div>
+      {% endif %}
+      <div class="form-group">
+        <!-- <label for="project-name" class="control-label">Логин:</label> -->
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+          <input type="text" class="form-control input-lg" id="project-name" placeholder="Логин">
+        </div>
+      </div>
+      <div class="form-group">
+        <!-- <label for="project-text" class="control-label">Пароль:</label> -->
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-lock fa-fw"></i></div>
+          <input type="password" class="form-control input-lg" id="project-pass" placeholder="Пароль">
+        </div>
+      </div>
+        <!-- <button type="button" class="btn btn-green btn-block btn-lg">Войти</button> -->
+        {{ form.username }}
+        {{ form.password }}
+        <input class="btn btn-green btn-block btn-lg" type="submit" value="Войти"/>
+        <input type="hidden" name="next" value="{{next}}" />
+    </form>
+
+  </div>
+
+  <div id="login-footer" class="text-center">
+    <span class="text-secondary">Нет аккаунта?</span> <a href="signup.html">Зарегистрироваться</a>
+  </div>
+</div>
+{% endblock %}

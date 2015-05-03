@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ospp_app.models import Project, Comment
+from ospp_app.models import Project, Comment, User
 
 # Register your models here.
 class ProjectInline(admin.StackedInline):

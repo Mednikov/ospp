@@ -46,13 +46,14 @@
         </ul>
       </div>
       <div class="col-3 right clearfix">
+        Добро пожаловать, {{user.username}}!  {# TODO: Удалить потом строку #}
         <div id="ava-container" class="right">
           <div id="ava">
             <a href=""><img src="{% static 'img/ava-placeholder.png' %}" alt=""></a>
           </div>
           <ul id="ava-dropdown">
             <li><a href="">Настройки</a></li>
-            <li><a href="">Выйти</a></li>
+            <li><a href="{% url 'logout' %}">Выйти</a></li>
           </ul>
         </div>
       </div>

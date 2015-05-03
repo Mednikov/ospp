@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from ospp_app.models import User, Project, Comment
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def projects(request):
 	projects = Project.objects.order_by('-date_create').filter(archive=False)
 	archive = Project.objects.order_by('-date_create').filter(archive=True)
@@ -13,7 +15,7 @@ def projects(request):
 
 	return render(request, 'projects.html', {'projects': projects, 'archive': archive})
 
-
+@login_required
 def archive(request):
 	archive = Project.objects.order_by('-date_create').filter(archive=True)
 	projects = Project.objects.order_by('-date_create').filter(archive=False)
