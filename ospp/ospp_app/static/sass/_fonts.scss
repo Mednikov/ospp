@@ -1,0 +1,10 @@
+/* ============================ */
+/* ============================ */
+/* FONTS */
+@mixin fontstack{
+	font-family: 'Open Sans', arial, sans-serif;
+}
+
+@mixin fastack{
+	font-family: FontAwesome, 'Open Sans', arial, sans-serif;
+}

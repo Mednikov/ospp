@@ -1,0 +1,120 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}ОСПП{% endblock %}</title>
+
+  <meta charset="utf-8">
+  <meta name="HandheldFriendly" content="true"/>  
+  <meta name="MobileOptimized" content="320"/> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+  <meta property="og:site_name" content="ОСПП">
+  <meta property="og:locale" content="ru-RU" >
+
+  <!-- FONTS -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'lib/font-awesome-4.3.0/css/font-awesome.min.css' %}">
+  <!--[if IE 7]>
+    <link rel="stylesheet" href="{% static 'lib/font-awesome-4.3.0/css/font-awesome-ie7.min.css' %}">
+  <![endif]-->
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style-IE.css' %}" />
+  <![endif]-->
+  {% block styles %}{% endblock %}
+
+
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="dark-bg">
+    <div class="wrap clearfix">
+      <div class="col-9 left clearfix">
+        <a href="{% url 'projects' %}" id="logo" class="left"><img src="{% static 'img/logo.png' %}" alt=""></a>
+        <ul id="menu" class="left clearfix">
+          <li><a href="{% url 'projects' %}">Проекты</a></li>
+          <li><a href="">Лента</a></li>
+          <li><a href="">Команда</a></li>
+        </ul>
+      </div>
+      <div class="col-3 right clearfix">
+        <div id="ava-container" class="right">
+          <div id="ava">
+            <a href=""><img src="{% static 'img/ava-placeholder.png' %}" alt=""></a>
+          </div>
+          <ul id="ava-dropdown">
+            <li><a href="">Настройки</a></li>
+            <li><a href="">Выйти</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {% block subnavigation %}
+  {% endblock %}
+
+
+  {% block content %}
+  {% endblock %}
+
+
+
+
+
+
+
+  <!-- MODALS -->
+  <!-- «New project» modal -->
+  <div class="modal fade" id="projectNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" id="myModalLabel">Создать новый проект</h4>
+        </div>
+
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="project-name" class="control-label">Имя:</label>
+              <input type="text" class="form-control" id="project-name">
+            </div>
+            <div class="form-group">
+              <label for="project-text" class="control-label">Описание:</label>
+              <textarea class="form-control" id="project-text"></textarea>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer text-center">
+          <!-- <button type="button" class="btn">Отмена</button> -->
+          <button type="button" class="btn btn-green">Cоздать проект</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- SCRIPTS -->
+  <script type="text/javascript" src="{% static 'lib/jquery-1.11.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  {% block scripts %}{% endblock %}
+
+</body>
+</html>

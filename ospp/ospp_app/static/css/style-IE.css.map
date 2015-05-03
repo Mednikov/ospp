@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";AACA,SAAU;EACT,IAAI,EAAE,CAAC;;EACP,OAAO,EAAE,KAAK",
+"sources": ["../sass/style-IE.scss"],
+"names": [],
+"file": "style-IE.css"
+}

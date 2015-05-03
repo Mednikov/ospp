@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}Проекты — ОСПП{% endblock %}
+
+{% block subnavigation %}
+<!-- SUB NAVIGATION -->
+<div id="subnav">
+  <div class="wrap clearfix">
+    <div class="col-9 left">
+      <!-- Мои проекты <span class="text-secondary">(5)</span> -->
+      <div class="dropdown">
+        <a id="proj-type-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Мои проекты <span class="text-secondary">({{projects|length}})</span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="proj-type-dropdown">
+          <li role="presentation" class="dropdown-header">
+            Фильтр проектов
+          </li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation">
+            <a href="{% url 'projects' %}">
+              <i class="fa fa-folder-open fa-fw"></i>&nbsp;
+              Мои проекты <span class="text-secondary">({{projects|length}})</span>
+            </a>
+          </li>
+          <li role="presentation">
+            <a href="{% url 'archive' %}">
+              <i class="fa fa-inbox fa-fw"></i>&nbsp;
+              Архив <span class="text-secondary">({{archive|length}})</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-3 right text-right">
+      <a href="" class="btn btn-green" data-toggle="modal" data-target="#projectNew"><i class="fa fa-plus"></i> Новый проект</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<!-- CONTENT -->
+<div id="content">
+  <div class="wrap clearfix">
+
+  <!-- {% for comment in comments %}
+    {{comment.text}}
+  {% endfor %} -->
+
+  {% if projects %}
+    {% for project in projects %}
+      <div class="proj-card col-3 left">
+        <div class="proj-card-img">
+          <img src="{% static 'img/img-placeholder.png' %}" alt="">
+          <div class="proj-card-img-overlay">
+            <a href="" class="btn btn-green"><i class="fa fa-eye"></i> Посмотреть</a>
+          </div>
+        </div>
+        <a href="" class="proj-card-info text-center">
+          <div class="proj-card-info-title">
+            {{project.name}}
+            <div class="proj-card-info-title-gradient"></div>
+          </div>
+          <div class="proj-card-info-secondary">
+            <div class="proj-card-info-secondary-date">{{project.date_create|date:"DATE_FORMAT"}}</div>
+            <!-- <div class="proj-card-info-secondary-files">11 файлов</div> -->
+            <div class="proj-card-info-secondary-files">
+              <i class="fa fa-comment-o"></i> {{project.comments|length}}
+              <i class="fa fa-image"></i> X
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="text-center">
+      <h4>Пока не создано ни одного проекта.</h4>
+      <p class="text-secondary">Как только вы создадите проект, он обязательно появится здесь.</p>
+    </div>
+  {% endif %}
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,426 @@
+/* ============================ */
+/* ============================ */
+/* SETTINGS */
+
+a, button, textarea{
+	outline:none!important;
+}
+
+textarea {
+  resize: vertical;
+}
+
+img {
+	// display: block;
+}
+
+h1{
+	font-size: 36px;
+	font-weight: 600;
+	line-height: 1.25em;
+	color: $brand;
+	margin-bottom: $margin;
+
+	.dark-bg &{
+		color: $white;
+	}
+}
+
+h2{
+	@extend h1;
+	font-size: 30px;
+}
+
+h3{
+	@extend h1;
+	font-size: 24px;
+}
+
+h4{
+	@extend h1;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+h5{
+	@extend h1;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+h6{
+	@extend h1;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+p{
+	margin-bottom: $margin;
+}
+
+
+a{
+	@include fastack;
+	color: $brand;
+	text-decoration: none;
+	cursor: pointer;
+
+	&:hover{
+		color: $brand-dark;
+		text-decoration: underline;
+	}
+
+	&:visited,
+	&:active,
+	&:focus{
+		color: $brand;
+		text-decoration: none;
+	}
+}
+
+b, strong{
+	font-weight: bolder;
+}
+
+i{
+	font-style: italic;
+}
+
+small, .small{
+	font-size: 85%;
+}
+
+label {
+	display: inline-block;
+	max-width: 100%;
+	margin-bottom: 5px;
+}
+
+
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+
+.dark-bg{
+	color: $white-dark;
+
+	& a{
+		color: $white-dark;
+
+		&:hover{
+			color: $white;
+			text-decoration: underline;
+		}
+	}
+
+	& .btn{
+		color: $white;
+		border: 1px solid $white;
+
+		&:hover{
+			background: $white;
+			color: $brand;
+			text-decoration: none;
+		}
+	}
+}
+
+.text-center{
+	text-align: center;
+}
+
+.text-secondary{
+	color: $grey;
+}
+
+.no-margin{
+	margin: 0;
+}
+
+.tooltip{
+	font-weight: normal;
+}
+
+.btn-lg,
+.input-lg{
+	font-weight: 300;
+}
+
+
+
+
+/* GRID */
+.wrap{
+	width: $wrap;
+	margin: 0 auto;
+}
+
+.row{
+	width: 100%;
+	margin: 0; /* reset bootstrap */
+	margin-bottom: 4*$margin;
+}
+
+.col-1{
+	display: block;
+	margin: 0 $margin;
+	width: 80px;
+
+	&.inner{
+		padding: 2*$margin;
+		// margin: 0;
+	}
+}
+
+.col-2{
+	@extend .col-1;
+	width: 180px;
+}
+
+
+.col-3{
+	@extend .col-1;
+	width: 280px;
+}
+
+.col-4{
+	@extend .col-1;
+	width: 380px;
+}
+
+.col-5{
+	@extend .col-1;
+	width: 480px;
+}
+
+.col-6{
+	@extend .col-1;
+	width: 580px;
+}
+
+.col-7{
+	@extend .col-1;
+	width: 680px;
+}
+
+.col-8{
+	@extend .col-1;
+	width: 780px;
+}
+
+.col-9{
+	@extend .col-1;
+	width: 880px;
+}
+
+.col-10{
+	@extend .col-1;
+	width: 980px;
+}
+
+.col-11{
+	@extend .col-1;
+	width: 1080px;
+}
+
+.col-12{
+	@extend .col-1;
+	width: 1180px;
+}
+
+
+.col-1-full{
+	width: 100px;
+}
+
+.col-2-full{
+	width: 200px;
+}
+
+.col-3-full{
+	width: 300px;
+}
+
+.col-4-full{
+	width: 400px;
+}
+
+.col-5-full{
+	width: 500px;
+}
+
+.col-6-full{
+	width: 600px;
+}
+
+.col-7-full{
+	width: 700px;
+}
+
+.col-8-full{
+	width: 800px;
+}
+
+.col-9-full{
+	width: 900px;
+}
+
+.col-10-full{
+	width: 1000px;
+}
+
+.col-11-full{
+	width: 1100px;
+}
+
+.col-12-full{
+	width: 1200px;
+}
+
+
+
+.col-offset-1{
+	margin-left: 110px;
+}
+
+.col-offset-2{
+	margin-left: 210px;
+}
+
+.col-offset-3{
+	margin-left: 310px;
+}
+
+.col-offset-4{
+	margin-left: 410px;
+}
+
+.col-offset-5{
+	margin-left: 510px;
+}
+
+.col-offset-6{
+	margin-left: 610px;
+}
+
+.col-offset-7{
+	margin-left: 710px;
+}
+
+.col-offset-8{
+	margin-left: 810px;
+}
+
+.col-offset-9{
+	margin-left: 910px;
+}
+
+.col-offset-10{
+	margin-left: 1010px;
+}
+
+.col-offset-11{
+	margin-left: 1110px;
+}
+
+
+
+/* ELEMENTS */
+.btn{
+	border: 1px solid $brand;
+	color: $brand;
+	background: none;
+
+	&:hover{
+		background: $brand;
+		color: $white-dark;
+	}
+
+	&:active{
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
+	&.btn-brand{
+		color: $white-dark;
+		background: $brand;
+		border: 1px solid $brand;
+		&:hover{
+			background: $brand-dark;
+			border: 1px solid $brand-dark;
+		}
+	}
+	&.btn-red{
+		color: $white-dark;
+		background: $red;
+		border: 1px solid $red;
+		&:hover{
+			background: $red-dark;
+			border: 1px solid $red-dark;
+		}
+	}
+	&.btn-green{
+		color: $white-dark;
+		background: $green;
+		border: 1px solid $green;
+		&:hover{
+			background: $green-dark;
+			border: 1px solid $green-dark;
+		}
+	}
+	&.btn-blue{
+		color: $white-dark;
+		background: $blue;
+		border: 1px solid $blue;
+		&:hover{
+			background: $blue-dark;
+			border: 1px solid $blue-dark;
+		}
+	}
+	&.btn-yellow{
+		color: $white-dark;
+		background: $yellow;
+		border: 1px solid $yellow;
+		&:hover{
+			background: $yellow-dark;
+			border: 1px solid $yellow-dark;
+		}
+	}
+}
+
+
+.modal{
+	.modal-content{
+		border-radius: initial;
+
+		.modal-header{
+			background: $brand;
+
+			.close{
+				color: $white-dark;
+			}
+
+			.modal-title{
+				color: $white-dark;
+			}
+		}
+
+		.modal-footer{
+			background: $white-dark;
+		}
+	}
+}

@@ -1,0 +1,281 @@
+/* ============================ */
+/* ============================ */
+/* MAIN STYLES */
+html{
+    @include fontstack;
+    font-size: 14px;
+}
+
+body{
+    background: $white-dark;
+}
+
+
+/* HEADER */
+header{
+    background: $brand;
+    // padding: 20px 0;
+    // font-size: 14px;
+
+    #logo{
+        margin: 2*$margin 3*$margin 2*$margin 0;
+    }
+
+    #menu{
+        font-weight: 700;
+        margin-top: 1.5*$margin;
+
+        li{
+            float: left;
+            margin: 0 $margin;
+
+            a{
+                display: block;
+                padding: $margin 2*$margin;
+                @include border-radius(4px);
+
+                &:hover{
+                    text-decoration: none;
+                    background: $brand-dark;
+                }
+            }
+        }
+    }
+
+    #ava-container{
+        position: relative;
+
+        #ava{
+            a{
+                display: block;
+                width: 26px+$margin;
+                height: 26px+$margin;
+                margin-top: (2*$margin)-$margin/2;
+                padding: $margin/2;
+                // background: $brand-dark;
+                @include border-radius(4px 4px 0 0);
+
+                img{
+                    @include border-radius(4px);
+                }
+            }
+        }
+
+        #ava-dropdown{
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            padding: $margin;
+            background: $brand-dark;
+            @include border-radius(4px 0 4px 4px);
+
+            li{
+                a{
+                    display: block;
+                    padding: $margin $margin;
+                    color: $brand-light;
+
+                    &:hover{
+                        text-decoration: none;
+                        color: $white-dark;
+                    }
+                }
+            }
+        }
+
+        &:hover{
+            #ava{
+                a{
+                    background: $brand-dark;
+                }
+            }
+
+            #ava-dropdown{
+                display: block;
+            }
+        }
+    }
+}
+
+
+
+/* SUB NAVIGATION */
+#subnav{
+    padding: 2*$margin;
+    // font-size: 14px;
+    background: $white;
+    border-bottom: 1px solid $grey-light;
+
+    .dropdown{
+        #proj-type-dropdown{
+            display: inline-block;
+            padding: 6px 0;
+
+            &:hover{
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+
+
+/* CONTENT */
+#content{
+    padding: 4*$margin 0;
+
+    .proj-card{
+        margin-top: $margin;
+        margin-bottom: $margin;
+        border: 1px solid $grey-light;
+        @include border-radius(4px);
+
+        .proj-card-img{
+            position: relative;
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+
+            img{
+                min-height: 100%;
+                min-width: 100%;
+                @include border-radius(4px 4px 0 0);
+            }
+
+            .proj-card-img-overlay{
+                // display: none;
+                opacity: 0;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: rgba(64,54,69, .9);
+                text-align: center;
+                @include border-radius(4px 4px 0 0);
+                @include animation(.15s);
+
+                a{
+                    position: relative;
+                    top: 50%;
+                    margin-top: -17px;
+                }
+            }
+        }
+
+        .proj-card-info{
+            display: block;
+            padding: 2*$margin;
+            background: $white;
+            border-top: 1px solid $grey-light;
+            @include border-radius(0 0 4px 4px);
+
+            .proj-card-info-title{
+                position: relative;
+                height: 25px;
+                // margin-bottom: $margin/2;
+                font-weight: 600;
+                overflow: hidden;
+                line-height: 15px;
+                
+                
+                .proj-card-info-title-gradient{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 25px;
+                    background: -webkit-linear-gradient(top, rgba(255,255,255, 0) 50%, rgba(255,255,255, 1) 100%);
+                    background:    -moz-linear-gradient(top, rgba(255,255,255, 0) 50%, rgba(255,255,255, 1) 100%);
+                    background:      -o-linear-gradient(top, rgba(255,255,255, 0) 50%, rgba(255,255,255, 1) 100%);
+                    background:     -ms-linear-gradient(top, rgba(255,255,255, 0) 50%, rgba(255,255,255, 1) 100%);
+                    background:         linear-gradient(top, rgba(255,255,255, 0) 50%, rgba(255,255,255, 1) 100%);
+                }
+            }
+
+            .proj-card-info-secondary{
+                .proj-card-info-secondary-date,
+                .proj-card-info-secondary-files{
+                    height: 20px;
+                    font-size: 12px;
+                    color: $grey;
+                }
+                .proj-card-info-secondary-files{
+                    display: none;
+
+                    .fa-image{
+                        margin-left: $margin;
+                    }
+                }
+            }
+
+            &:hover{
+                text-decoration: none;
+            }
+        }
+
+        &:hover{
+            .proj-card-img{
+                .proj-card-img-overlay{
+                    // display: block;
+                    opacity: 1;
+                }
+            }
+            .proj-card-info{
+                .proj-card-info-secondary{
+                    .proj-card-info-secondary-date{
+                        display: none;
+                    }
+                    .proj-card-info-secondary-files{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+/* LOGIN FORM */
+#login-bg{
+    background: url('../img/bg-login.png');
+    background-size: cover;
+}
+
+#login{
+    position: absolute;
+    width: 500px;
+    top: 50%;
+    left: 50%;
+    margin-top: -160px;
+    margin-left: -250px;
+    // margin: 0 auto;
+    // border: 1px solid $grey-light;
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+            box-shadow: 0 5px 15px rgba(0,0,0,.5);
+
+    #login-header,
+    #login-footer{
+        padding: 1.5*$margin 2*$margin;
+    }
+
+    #login-header{
+        background: $brand;
+    }
+
+    #login-body{
+        padding: 2*$margin;
+        background: $white;
+    }
+
+    #login-footer{
+        background: $white-dark;
+        border-top: 1px solid $grey-light;
+    }
+
+    &.signiup{
+        margin-top: -185px;
+    }
+}
