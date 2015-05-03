@@ -1,4 +1,5 @@
 {% extends "registration\registration_base.html" %}
+{% load widget_tweaks %}
 
 
 {% block title %}Войти — ОСПП{% endblock %}
@@ -21,22 +22,17 @@
       </div>
       {% endif %}
       <div class="form-group">
-        <!-- <label for="project-name" class="control-label">Логин:</label> -->
         <div class="input-group">
           <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
-          <input type="text" class="form-control input-lg" id="project-name" placeholder="Логин">
+          {{ form.username|add_class:"form-control input-lg"|attr:"placeholder:Логин" }}
         </div>
       </div>
       <div class="form-group">
-        <!-- <label for="project-text" class="control-label">Пароль:</label> -->
         <div class="input-group">
           <div class="input-group-addon"><i class="fa fa-lock fa-fw"></i></div>
-          <input type="password" class="form-control input-lg" id="project-pass" placeholder="Пароль">
+          {{ form.password|add_class:"form-control input-lg"|attr:"placeholder:Пароль" }}
         </div>
       </div>
-        <!-- <button type="button" class="btn btn-green btn-block btn-lg">Войти</button> -->
-        {{ form.username }}
-        {{ form.password }}
         <input class="btn btn-green btn-block btn-lg" type="submit" value="Войти"/>
         <input type="hidden" name="next" value="{{next}}" />
     </form>
