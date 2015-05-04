@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
-from ospp_app.models import User, Project, Comment
+from ospp_app.models import User, Project, Image, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from ospp_app.forms import CreateUserForm, EditUserForm
@@ -13,7 +13,8 @@ def projects(request):
 
     for obj in projects:
         obj.comments = Comment.objects.filter(project=obj)
-        # obj.files = File.objects.filter(project=obj).count()
+        obj.images = Image.objects.filter(project=obj)
+        obj.placeholder = obj.images.first
 
     return render(request, 'projects.html', {'projects': projects, 'archive': archive})
 
@@ -22,6 +23,7 @@ def projects(request):
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user == project.proj_author:
+        project.images = Image.objects.filter(project=project)
         return render(request, 'projects_detail.html', {'project': project})
     else:
         return render(request, 'access_denied.html')

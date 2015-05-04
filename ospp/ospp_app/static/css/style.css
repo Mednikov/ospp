@@ -587,4 +587,7 @@ header {
   margin-top: 3px;
   margin-bottom: 0; }
 
+.projects-detail .proj-card-info-secondary-files {
+  display: block !important; }
+
 /*# sourceMappingURL=style.css.map */

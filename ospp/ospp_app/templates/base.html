@@ -42,8 +42,8 @@
         <ul id="menu" class="left clearfix">
           <li><a href="{% url 'projects' %}">Проекты</a></li>
           <li><a href="">Лента</a></li>
-          <li><a href="">Команда</a></li>
-          <li>Добро пожаловать, {{user.username}}!
+          <!-- <li><a href="">Команда</a></li> -->
+          <li class="text-secondary" style="padding:10px 0">Добро пожаловать, {{user.username}}!
         ({{user.first_name}} {{user.last_name}})</li>
         </ul>
       </div>

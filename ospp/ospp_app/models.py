@@ -19,6 +19,14 @@ class Project(models.Model):
         return self.name
 
 
+class Image(models.Model):
+    class Meta():
+        db_table = 'image'
+
+    image = models.ImageField(max_length=100)
+    project = models.ForeignKey(Project)
+
+
 class Comment(models.Model):
     class Meta():
         db_table = 'comment'

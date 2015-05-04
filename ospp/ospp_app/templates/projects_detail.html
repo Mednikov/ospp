@@ -25,28 +25,25 @@
 <!-- CONTENT -->
 <div id="content" class="projects-detail">
   <div class="wrap clearfix">
-
+{{MEDIA_URL}}
   {# TODO: don't forget to make changes below #}
-  {% if projects %}
-    {% for project in projects %}
+  {% if project.images %}
+    {% for image in project.images %}
       <div class="proj-card col-3 left">
         <div class="proj-card-img">
-          <img src="{% static 'img/img-placeholder.png' %}" alt="">
+          <img src="{{image.image.url}}" alt="">
           <div class="proj-card-img-overlay">
             <a href="" class="btn btn-green"><i class="fa fa-eye"></i> Посмотреть</a>
           </div>
         </div>
         <a href="" class="proj-card-info text-center">
           <div class="proj-card-info-title">
-            ({{project.id}}) {{project.name}}
+            {{image.image.name|cut:"./"}}
             <div class="proj-card-info-title-gradient"></div>
           </div>
           <div class="proj-card-info-secondary">
-            <div class="proj-card-info-secondary-date">{{project.date_create|date:"DATE_FORMAT"}} ({{project.proj_author}})</div>
-            <!-- <div class="proj-card-info-secondary-files">11 файлов</div> -->
             <div class="proj-card-info-secondary-files">
-              <i class="fa fa-comment-o"></i> {{project.comments|length}}
-              <i class="fa fa-image"></i> X
+              {{image.image.width}}x{{image.image.height}}
             </div>
           </div>
         </a>
