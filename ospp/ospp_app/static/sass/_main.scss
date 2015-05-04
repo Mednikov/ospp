@@ -69,6 +69,7 @@ header{
             padding: $margin;
             background: $brand-dark;
             @include border-radius(4px 0 4px 4px);
+            z-index: 1;
 
             li{
                 a{
@@ -305,5 +306,15 @@ header{
                 @include border-radius(4px);
             }
         }
+    }
+}
+
+
+
+/* PROJECTS DETAIL */
+.project-name{
+    h4{
+        margin-top: 3px;
+        margin-bottom: 0;
     }
 }

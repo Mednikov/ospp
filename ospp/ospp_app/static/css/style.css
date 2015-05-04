@@ -400,7 +400,8 @@ header {
       border-radius: 4px 0 4px 4px;
       -webkit-background-clip: padding-box;
       -moz-background-clip: padding-box;
-      background-clip: padding-box; }
+      background-clip: padding-box;
+      z-index: 1; }
       header #ava-container #ava-dropdown li a {
         display: block;
         padding: 10px 10px;
@@ -580,5 +581,10 @@ header {
       -webkit-background-clip: padding-box;
       -moz-background-clip: padding-box;
       background-clip: padding-box; }
+
+/* PROJECTS DETAIL */
+.project-name h4 {
+  margin-top: 3px;
+  margin-bottom: 0; }
 
 /*# sourceMappingURL=style.css.map */

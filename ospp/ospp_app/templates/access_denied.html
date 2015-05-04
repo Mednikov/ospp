@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block title %}Проекты — ОСПП{% endblock %}
+
+{% block subnavigation %}
+<!-- SUB NAVIGATION -->
+<div id="subnav">
+  <div class="wrap clearfix">
+    <div class="col-12 left project-name">
+      <h4>Ошибка: <span class="text-secondary">оказано в доступе</span></h4>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<!-- CONTENT -->
+<div id="content" class="projects-detail">
+  <div class="wrap clearfix">
+
+    <div class="col-12 text-center">
+      <h4>Вы не имеете доступа к этому проекту.</h4>
+      <p class="text-secondary">У вас на данный момент нет прав для просмотра этого проекта. <br> А пока можете вернуться <a href="{% url 'projects' %}">на главную</a></p>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

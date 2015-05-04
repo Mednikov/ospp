@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from ospp_app.models import User, Project, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -16,6 +16,20 @@ def projects(request):
         # obj.files = File.objects.filter(project=obj).count()
 
     return render(request, 'projects.html', {'projects': projects, 'archive': archive})
+
+
+@login_required
+def project_detail(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.user == project.proj_author:
+        return render(request, 'projects_detail.html', {'project': project})
+    else:
+        return render(request, 'access_denied.html')
+    # project = Project.objects.filter(archive=False, proj_author=request.user)
+    # for obj in projects:
+    #     obj.comments = Comment.objects.filter(project=obj)
+    #     # obj.files = File.objects.filter(project=obj).count()
+    # return render(request, 'projects_detail.html', {'project': project})
 
 
 @login_required
