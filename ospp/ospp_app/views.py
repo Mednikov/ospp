@@ -25,11 +25,6 @@ def project_detail(request, project_id):
         return render(request, 'projects_detail.html', {'project': project})
     else:
         return render(request, 'access_denied.html')
-    # project = Project.objects.filter(archive=False, proj_author=request.user)
-    # for obj in projects:
-    #     obj.comments = Comment.objects.filter(project=obj)
-    #     # obj.files = File.objects.filter(project=obj).count()
-    # return render(request, 'projects_detail.html', {'project': project})
 
 
 @login_required
@@ -56,7 +51,7 @@ def signup(request):
         form = CreateUserForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-# request.user
+
 @login_required
 def settings(request):
     if request.method == 'POST':

@@ -47,10 +47,6 @@
 <div id="content">
   <div class="wrap clearfix">
 
-  <!-- {% for comment in comments %}
-    {{comment.text}}
-  {% endfor %} -->
-
   {% if projects %}
     {% for project in projects %}
       <div class="proj-card col-3 left">
@@ -60,7 +56,7 @@
             <a href="{% url 'project_detail' project.id %}" class="btn btn-green"><i class="fa fa-eye"></i> Посмотреть</a>
           </div>
         </div>
-        <a href="" class="proj-card-info text-center">
+        <a href="{% url 'project_detail' project.id %}" class="proj-card-info text-center">
           <div class="proj-card-info-title">
             ({{project.id}}) {{project.name}}
             <div class="proj-card-info-title-gradient"></div>

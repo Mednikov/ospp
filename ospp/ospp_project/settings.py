@@ -108,7 +108,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS  = (
     'ospp_app/static/',
 )
-STATIC_ROOT = "C:/webprojects/ospp/ospp/static/"
+# STATIC_ROOT = "C:/webprojects/ospp/ospp/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 LOGIN_REDIRECT_URL = '/projects/'
 LOGIN_URL = 'django.contrib.auth.views.login'
