@@ -238,7 +238,7 @@ header{
 
 
 
-/* LOGIN FORM */
+/* LOGIN & SIGNUP FORM */
 #login-bg{
     background: url('../img/bg-login.png');
     background-size: cover;
@@ -281,5 +281,29 @@ header{
 
     &.signiup{
         margin-top: -185px;
+    }
+}
+
+
+
+/* SETTINGS PAGE */
+#settings{
+    margin: 0 auto;
+    padding: 2*$margin;
+    border: 1px solid $grey-light;
+    @include border-radius(4px);
+    background: $white;
+
+    .settings-ava{
+        margin-bottom: $margin;
+
+        a{
+            img{
+                width: 100px;
+                height: 100px;
+                border: 1px solid $grey-light;
+                @include border-radius(4px);
+            }
+        }
     }
 }

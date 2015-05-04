@@ -2,15 +2,14 @@ from django.shortcuts import render, HttpResponseRedirect
 from ospp_app.models import User, Project, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-from ospp_app.forms import CreateUserForm
+from ospp_app.forms import CreateUserForm, EditUserForm
 
 
-# Create your views here.
 
 @login_required
 def projects(request):
-    projects = Project.objects.order_by('-date_create').filter(archive=False)
-    archive = Project.objects.order_by('-date_create').filter(archive=True)
+    projects = Project.objects.order_by('-date_create').filter(archive=False, proj_author=request.user)
+    archive = Project.objects.order_by('-date_create').filter(archive=True, proj_author=request.user)
 
     for obj in projects:
         obj.comments = Comment.objects.filter(project=obj)
@@ -21,8 +20,8 @@ def projects(request):
 
 @login_required
 def archive(request):
-    archive = Project.objects.order_by('-date_create').filter(archive=True)
-    projects = Project.objects.order_by('-date_create').filter(archive=False)
+    archive = Project.objects.order_by('-date_create').filter(archive=True, proj_author=request.user)
+    projects = Project.objects.order_by('-date_create').filter(archive=False, proj_author=request.user)
 
     for obj in archive:
         obj.comments = Comment.objects.filter(project=obj)
@@ -42,3 +41,19 @@ def signup(request):
     else:
         form = CreateUserForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+# request.user
+@login_required
+def settings(request):
+    if request.method == 'POST':
+        form = EditUserForm(request.POST)
+        if form.is_valid():
+            user = User.objects.get(username=request.user)
+            user.first_name = form.data['first_name']
+            user.last_name = form.data['last_name']
+            user.email = form.data['email']
+            user.save()
+            return HttpResponseRedirect('/settings')
+    else:
+        form = EditUserForm()
+    return render(request, 'settings.html', {'form': form})

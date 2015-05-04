@@ -43,16 +43,17 @@
           <li><a href="{% url 'projects' %}">Проекты</a></li>
           <li><a href="">Лента</a></li>
           <li><a href="">Команда</a></li>
+          <li>Добро пожаловать, {{user.username}}!
+        ({{user.first_name}} {{user.last_name}})</li>
         </ul>
       </div>
       <div class="col-3 right clearfix">
-        Добро пожаловать, {{user.username}}!  {# TODO: Удалить потом строку #}
         <div id="ava-container" class="right">
           <div id="ava">
             <a href=""><img src="{% static 'img/ava-placeholder.png' %}" alt=""></a>
           </div>
           <ul id="ava-dropdown">
-            <li><a href="">Настройки</a></li>
+            <li><a href="{% url 'settings' %}">Настройки</a></li>
             <li><a href="{% url 'logout' %}">Выйти</a></li>
           </ul>
         </div>

@@ -524,7 +524,7 @@ header {
     #content .proj-card:hover .proj-card-info .proj-card-info-secondary .proj-card-info-secondary-files {
       display: block; }
 
-/* LOGIN FORM */
+/* LOGIN & SIGNUP FORM */
 #login-bg {
   background: url("../img/bg-login.png");
   background-size: cover; }
@@ -553,5 +553,32 @@ header {
     border-top: 1px solid #d3d3e2; }
   #login.signiup {
     margin-top: -185px; }
+
+/* SETTINGS PAGE */
+#settings {
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #d3d3e2;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  background: #fff; }
+  #settings .settings-ava {
+    margin-bottom: 10px; }
+    #settings .settings-ava a img {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #d3d3e2;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      border-radius: 4px;
+      -webkit-background-clip: padding-box;
+      -moz-background-clip: padding-box;
+      background-clip: padding-box; }
 
 /*# sourceMappingURL=style.css.map */

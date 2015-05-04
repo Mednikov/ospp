@@ -63,11 +63,11 @@
         </div>
         <a href="" class="proj-card-info text-center">
           <div class="proj-card-info-title">
-            {{project.name}}
+            ({{project.id}}) {{project.name}}
             <div class="proj-card-info-title-gradient"></div>
           </div>
           <div class="proj-card-info-secondary">
-            <div class="proj-card-info-secondary-date">{{project.date_create|date:"DATE_FORMAT"}}</div>
+            <div class="proj-card-info-secondary-date">{{project.date_create|date:"DATE_FORMAT"}} ({{project.proj_author}})</div>
             <!-- <div class="proj-card-info-secondary-files">11 файлов</div> -->
             <div class="proj-card-info-secondary-files">
               <i class="fa fa-comment-o"></i> {{project.comments|length}}
