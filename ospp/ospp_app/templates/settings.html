@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}Настройки — ОСПП{% endblock %}
+
+{% block content %}
+<!-- CONTENT -->
+<div id="content">
+  <div class="wrap clearfix">
+
+    <div id="settings" class="col-6 text-center">
+      <div class="settings-ava">
+        <a href="">
+          <img src="{% static 'img/ava-placeholder.png' %}" alt="">
+        </a>
+      </div>
+      <div class="settings-form">
+        <form method="post">
+        {% csrf_token %}
+          {% if form.errors %}
+          <div class="form-group">
+            <p class="text-danger text-center">
+            Обнаружены ошибки при заполнении формы.<br>
+            Пожалуйста, попробуйте еще раз.
+          </div>
+          {% endif %}
+          <div class="form-group {% if form.first_name.errors %}has-error{% endif %}">
+            <div class="input-group">
+              <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+              <!-- {{ form.first_name }} -->
+              <input class="form-control input-lg" id="id_first_name" maxlength="20" name="first_name" placeholder="Имя" type="text" value="{{user.first_name}}">
+            </div>
+          </div>
+          <div class="form-group {% if form.last_name.errors %}has-error{% endif %}">
+            <div class="input-group">
+              <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+              <!-- {{ form.last_name }} -->
+              <input class="form-control input-lg" id="id_last_name" maxlength="20" name="last_name" placeholder="Фамилия" type="text" value="{{user.last_name}}">
+            </div>
+          </div>
+          <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+            <div class="input-group">
+              <div class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></div>
+              <!-- {{ form.email }} -->
+              <input class="form-control input-lg" id="id_email" name="email" placeholder="E-mail" type="text" value="{{user.email}}">
+            </div>
+          </div>
+          <input class="btn btn-green btn-block btn-lg" type="submit" value="Сохранить"/>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
