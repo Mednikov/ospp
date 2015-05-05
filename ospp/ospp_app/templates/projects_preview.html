@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}{{project.name}} — ОСПП{% endblock %}
+
+{% block subnavigation %}
+<!-- SUB NAVIGATION -->
+<div id="subnav">
+  <div class="wrap clearfix">
+    <div class="col-8 left project-filename">
+      <h6>
+        <b>{{project.pages.number}} из {{project.pages.paginator.num_pages}}</b>
+        {% for image in project.pages %}
+          {{image.image.name|cut:"./"}} 
+          <span class="text-secondary">({{image.image.width}}x{{image.image.height}})</span>
+        {% endfor %}
+      </h6>
+    </div>
+    <div class="col-4 right text-right">
+      <a href="{% if project.pages.has_previous %}?page={{project.pages.previous_page_number}}{% endif %}" class="btn" {% if not project.pages.has_previous %}disabled="disabled"{% endif %}><i class="fa fa-angle-left fa-fw"></i></a>
+      <a href="{% if project.pages.has_next %}?page={{project.pages.next_page_number}}{% endif %}" class="btn" {% if not project.pages.has_next %}disabled="disabled"{% endif %}><i class="fa fa-angle-right fa-fw"></i></a>
+      <a href="{{request.path|cut:'/preview/'}}" class="btn project-back"><i class="fa fa-close"></i></a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<!-- CONTENT -->
+<div id="content" class="projects-preview">
+  <div class="wrap clearfix">
+
+  {% if project.images %}
+    {% for image in project.pages %}
+      <div class="col-12 text-center projects-preview-img">
+        <img src="{{image.image.url}}" alt="">
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="text-center">
+      <h4>В папке проекта нет ни одного файла.</h4>
+      <p class="text-secondary">Как только вы добавите файлы в проект, они обязательно появятся здесь.</p>
+    </div>
+  {% endif %}
+
+  </div>
+</div>
+{% endblock %}

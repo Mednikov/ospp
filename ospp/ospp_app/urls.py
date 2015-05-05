@@ -4,7 +4,8 @@ from ospp_app import views
 
 urlpatterns = [
     url(r'^projects/$', views.projects, name='projects'),
-    url(r'^projects/(?P<project_id>\d+)$', views.project_detail, name='project_detail'),
+    url(r'^projects/(?P<project_id>\d+)/$', views.project_detail, name='project_detail'),
+    url(r'^projects/(?P<project_id>\d+)/preview/$', views.project_preview, name='project_preview'),
     url(r'^archive/$', views.archive, name='archive'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}, name='logout'),

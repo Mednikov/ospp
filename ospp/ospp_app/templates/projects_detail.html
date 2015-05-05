@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 
-{% block title %}Проекты — ОСПП{% endblock %}
+{% block title %}{{project.name}} — ОСПП{% endblock %}
 
 {% block subnavigation %}
 <!-- SUB NAVIGATION -->
@@ -12,9 +12,11 @@
       <h4>{{project.name}}</h4>
     </div>
     <div class="col-4 right text-right">
-      <a href="" class="btn btn-green" data-toggle="modal" data-target="#projectNew"><i class="fa fa-upload"></i> Загрузить файлы</a>
-      <a href="" class="btn" data-toggle="modal" data-target="#projectNew"><i class="fa fa-play"></i></a>
-      <a href="" class="btn" data-toggle="modal" data-target="#projectNew"><i class="fa fa-share-alt"></i></a>
+      <a href="" class="btn btn-green"><i class="fa fa-upload"></i> Загрузить файлы</a>
+      {% if project.images %}
+      <a href="{{request.path}}preview/" class="btn"><i class="fa fa-play"></i></a>
+      <a href="" class="btn" data-toggle="modal" data-target="#projectShare"><i class="fa fa-share-alt"></i></a>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -25,7 +27,6 @@
 <!-- CONTENT -->
 <div id="content" class="projects-detail">
   <div class="wrap clearfix">
-{{MEDIA_URL}}
   {# TODO: don't forget to make changes below #}
   {% if project.images %}
     {% for image in project.images %}
@@ -33,7 +34,7 @@
         <div class="proj-card-img">
           <img src="{{image.image.url}}" alt="">
           <div class="proj-card-img-overlay">
-            <a href="" class="btn btn-green"><i class="fa fa-eye"></i> Посмотреть</a>
+            <a href="{{request.path}}preview/?page={{forloop.counter}}" class="btn btn-green"><i class="fa fa-eye"></i> Посмотреть</a>
           </div>
         </div>
         <a href="" class="proj-card-info text-center">
@@ -56,6 +57,37 @@
     </div>
   {% endif %}
 
+  </div>
+</div>
+{% endblock %}
+
+
+{% block modals %}
+<!-- MODALS -->
+<!-- «Project share» modal -->
+<div class="modal fade" id="projectShare" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Ссылка на проект</h4>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="project-name" class="control-label">Ссылка на просмотр файлов проекта:</label>
+            <input type="text" class="form-control" id="project-share-link" value="{{request.build_absolute_uri}}preview/">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer text-center">
+        <button type="button" id="project-share-copy" class="btn btn-green">Cкопировать в буфер обмена</button>
+      </div>
+
+    </div>
   </div>
 </div>
 {% endblock %}

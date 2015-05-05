@@ -108,6 +108,9 @@ label {
   max-width: 100%;
   margin-bottom: 5px; }
 
+*[disabled] {
+  opacity: 0.5 !important; }
+
 .left {
   float: left; }
 
@@ -589,5 +592,20 @@ header {
 
 .projects-detail .proj-card-info-secondary-files {
   display: block !important; }
+
+/* PROJECTS PREVIEW */
+.project-filename h6 {
+  font-size: 14px;
+  margin-top: 8px;
+  margin-bottom: 0; }
+  .project-filename h6 b {
+    margin-right: 10px; }
+
+.project-back {
+  margin-left: 10px; }
+
+.projects-preview .projects-preview-img img {
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); }
 
 /*# sourceMappingURL=style.css.map */

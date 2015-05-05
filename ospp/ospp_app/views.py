@@ -3,6 +3,7 @@ from ospp_app.models import User, Project, Image, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from ospp_app.forms import CreateUserForm, EditUserForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
@@ -23,8 +24,29 @@ def projects(request):
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user == project.proj_author:
-        project.images = Image.objects.filter(project=project)
+        project.images = Image.objects.filter(project=project).order_by('image')
         return render(request, 'projects_detail.html', {'project': project})
+    else:
+        return render(request, 'access_denied.html')
+
+
+@login_required     #delete this line later
+def project_preview(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+
+    if request.user == project.proj_author:
+        project.images = Image.objects.filter(project=project).order_by('image')
+
+        paginator = Paginator(project.images, 1)
+        page = request.GET.get('page')
+        try:
+            project.pages = paginator.page(page)
+        except PageNotAnInteger:
+            project.pages = paginator.page(1)
+        except EmptyPage:
+            project.pages = paginator.page(paginator.num_pages)
+
+        return render(request, 'projects_preview.html', {'project': project})
     else:
         return render(request, 'access_denied.html')
 

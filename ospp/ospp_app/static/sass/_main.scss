@@ -324,3 +324,31 @@ header{
         display: block!important;
     }
 }
+
+
+
+/* PROJECTS PREVIEW */
+.project-filename{
+    h6{
+        font-size: 14px;
+        margin-top: 8px;
+        margin-bottom: 0;
+
+        b{
+            margin-right: $margin;
+        }
+    }
+}
+
+.project-back{
+    margin-left: $margin;
+}
+
+.projects-preview{
+    .projects-preview-img{
+        img{
+            -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+                    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        }
+    }
+}
