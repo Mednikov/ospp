@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from ospp_app.models import Project, Comment
+from django.core.validators import MaxLengthValidator
 
 
 class CreateUserForm(forms.Form):
@@ -83,3 +84,33 @@ class EditUserForm(forms.Form):
 
     class Meta:
         model = User
+
+
+
+class CreateProjectForm(forms.Form):
+    project_name = forms.CharField(
+        label='Project name',
+        max_length=40,
+        validators=[MaxLengthValidator(20)],
+        error_messages={'required': 'Введите название проекта'},
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+    project_description = forms.CharField(
+        label='Project description',
+        max_length=200,
+        validators=[MaxLengthValidator(100)],
+        error_messages={'required': 'Введите описание проекта'},
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'rows': 3
+            }
+        )
+    )
+
+    class Meta:
+        model = Project

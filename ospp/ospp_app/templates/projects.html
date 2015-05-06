@@ -4,6 +4,12 @@
 
 {% block title %}Проекты — ОСПП{% endblock %}
 
+{% block scripts %}
+  {% if form.errors %}
+    <script type="text/javascript" src="{% static 'js/modal-form-errors.js' %}"></script>
+  {% endif %}
+{% endblock %}
+
 {% block subnavigation %}
 <!-- SUB NAVIGATION -->
 <div id="subnav">
@@ -101,23 +107,31 @@
         <h4 class="modal-title text-center" id="myModalLabel">Создать новый проект</h4>
       </div>
 
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
+      <form action="" method="post" class="js-project-create">
+        <div class="modal-body">
+          {% csrf_token %}
+            {% if form.errors %}
+            <div class="form-group">
+              <p class="text-danger text-center">
+                Обнаружены ошибки при заполнении формы.<br>
+                Пожалуйста, попробуйте еще раз.
+              </p>
+            </div>
+            {% endif %}
+          <div class="form-group {% if form.project_name.errors %}has-error{% endif %}">
             <label for="project-name" class="control-label">Имя:</label>
-            <input type="text" class="form-control" id="project-name">
+            {{form.project_name}}
           </div>
-          <div class="form-group">
+          <div class="form-group {% if form.project_description.errors %}has-error{% endif %}">
             <label for="project-text" class="control-label">Описание:</label>
-            <textarea class="form-control" id="project-text"></textarea>
+            {{form.project_description}}
           </div>
-        </form>
-      </div>
+        </div>
 
-      <div class="modal-footer text-center">
-        <!-- <button type="button" class="btn">Отмена</button> -->
-        <button type="button" class="btn btn-green">Cоздать проект</button>
-      </div>
+        <div class="modal-footer text-center">
+          <input class="btn btn-green" type="submit" value="Cоздать проект">
+        </div>
+      </form>
 
     </div>
   </div>

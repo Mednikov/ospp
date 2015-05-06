@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from ospp_app.models import User, Project, Image, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-from ospp_app.forms import CreateUserForm, EditUserForm
+from ospp_app.forms import CreateUserForm, EditUserForm, CreateProjectForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -17,7 +17,18 @@ def projects(request):
         obj.images = Image.objects.filter(project=obj)
         obj.placeholder = obj.images.first
 
-    return render(request, 'projects.html', {'projects': projects, 'archive': archive})
+    if request.method == 'POST':
+        form = CreateProjectForm(request.POST)
+        if form.is_valid():
+            if request.user.is_authenticated():
+                user = User.objects.get(username=request.user.username)
+                new_project = Project(name=form.data['project_name'], description=form.data['project_description'], proj_author=user)
+                new_project.save()
+                return HttpResponseRedirect('/projects/'+str(new_project.id))
+    else:
+        form = CreateProjectForm()
+
+    return render(request, 'projects.html', {'projects': projects, 'archive': archive, 'form': form})
 
 
 @login_required
