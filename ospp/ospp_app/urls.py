@@ -1,6 +1,7 @@
 __author__ = 'Pavel Mednikov'
 from django.conf.urls import include, url
 from ospp_app import views
+#from ospp_app.views import multiuploader_delete
 
 urlpatterns = [
     url(r'^projects/$', views.projects, name='projects'),

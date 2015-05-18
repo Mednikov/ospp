@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from ospp_app.models import Project, Comment
+from ospp_app.models import Project, Comment, Image
 from django.core.validators import MaxLengthValidator
 
 
@@ -91,7 +91,7 @@ class CreateProjectForm(forms.Form):
     project_name = forms.CharField(
         label='Project name',
         max_length=40,
-        validators=[MaxLengthValidator(20)],
+        validators=[MaxLengthValidator(40)],
         error_messages={'required': 'Введите название проекта'},
         widget=forms.TextInput(
             attrs={
@@ -102,7 +102,7 @@ class CreateProjectForm(forms.Form):
     project_description = forms.CharField(
         label='Project description',
         max_length=200,
-        validators=[MaxLengthValidator(100)],
+        validators=[MaxLengthValidator(200)],
         error_messages={'required': 'Введите описание проекта'},
         widget=forms.Textarea(
             attrs={
@@ -114,3 +114,24 @@ class CreateProjectForm(forms.Form):
 
     class Meta:
         model = Project
+
+
+
+class UploadImageForm(forms.ModelForm):
+    image = forms.ImageField(
+        label='Image file',
+        error_messages={'required': 'Выберите изображение'},
+    )
+    # project = forms.CharField(
+    #     label='Project',
+    #     error_messages={'required': 'Выберите название проекта'},
+    #     widget=forms.Select(
+    #         attrs={
+    #             'class': 'form-control'
+    #         }
+    #     )
+    # )
+
+    class Meta:
+        model = Image
+        exclude = ()

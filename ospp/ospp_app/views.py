@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from ospp_app.models import User, Project, Image, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-from ospp_app.forms import CreateUserForm, EditUserForm, CreateProjectForm
+from ospp_app.forms import CreateUserForm, EditUserForm, CreateProjectForm, UploadImageForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -33,10 +33,32 @@ def projects(request):
 
 @login_required
 def project_detail(request, project_id):
+
     project = get_object_or_404(Project, pk=project_id)
     if request.user == project.proj_author:
         project.images = Image.objects.filter(project=project).order_by('image')
-        return render(request, 'projects_detail.html', {'project': project})
+
+
+        if request.method == 'POST':
+            form = UploadImageForm(request.POST, request.FILES)
+            if form.is_valid():
+                pic = Image(image=request.FILES['image'], project=project)
+                pic = form.save(commit=False)
+                pic.save()
+                return render(request, 'projects_detail.html', {'project': project, 'form': form})
+        else:
+            form = UploadImageForm()
+        return render(request, 'projects_detail.html', {'project': project, 'form': form})
+
+        # if request.method == 'POST':
+        #     form = UploadImageForm(request.POST, request.FILES)
+        #     if form.is_valid():
+        #         handle_uploaded_file(request.FILES['image'])
+        #         return render(request, 'projects_detail.html', {'project': project, 'form': form})
+        # else:
+        #     form = UploadImageForm()
+        # return render(request, 'projects_detail.html', {'project': project, 'form': form})
+
     else:
         return render(request, 'access_denied.html')
 

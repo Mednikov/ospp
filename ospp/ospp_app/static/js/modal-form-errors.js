@@ -4,6 +4,7 @@ $(document).ready(function () {
 
 
   $('#projectNew').modal();
+  $('#uploadImage').modal();
 
 
 
