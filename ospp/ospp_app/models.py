@@ -19,12 +19,18 @@ class Project(models.Model):
         return self.name
 
 
+
+def project_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/proj_<id>/<filename>
+    return 'proj_{0}/{1}'.format(instance.project.id, filename)
+
 class Image(models.Model):
     class Meta():
         db_table = 'image'
 
-    image = models.ImageField(max_length=100)
+    image = models.ImageField(upload_to=project_directory_path)
     project = models.ForeignKey(Project)
+
 
 
 class Comment(models.Model):

@@ -2,22 +2,12 @@
 $(document).ready(function () {
 
 
-  $('a[data-target="uploadImage"]').click(function() {
-     console.log("HEY");
-  });
+  var projectId = String(window.location.pathname.match(/\d+/g));
 
-  console.log( $("a[data-target='uploadImage']") );
-
-  var projectName = $(".project-name h4").text();
-  console.log(projectName);
-  $("#id_project option").each(function(){
-    // $('this').removeAttr('selected','selected');
-    console.log($('this').text());
-    // if ( $('this').val = projectName ){
-    //   console.log($('this').val+" === OK");
-    // } else {
-    //   console.log($('this').val+" === Fuck");
-    // };
+  $("#id_project").each(function(){
+    $(this).find('option').removeAttr('selected','selected');
+    $(this).val(projectId);
+    $(this).parent().attr('hidden','hidden');
   });
 
 

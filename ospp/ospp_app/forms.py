@@ -117,19 +117,24 @@ class CreateProjectForm(forms.Form):
 
 
 
+# BIRTH_YEAR_CHOICES = ('1980', '1981', '1982')
+
 class UploadImageForm(forms.ModelForm):
     image = forms.ImageField(
         label='Image file',
         error_messages={'required': 'Выберите изображение'},
     )
-    # project = forms.CharField(
+    # project = forms.ChoiceField(
     #     label='Project',
+    #     # choices = BIRTH_YEAR_CHOICES,
+    #     initial='Test',
     #     error_messages={'required': 'Выберите название проекта'},
     #     widget=forms.Select(
     #         attrs={
-    #             'class': 'form-control'
-    #         }
-    #     )
+    #             'class': 'form-control',
+    #         },
+    #         choises=project.choices
+    #     ),
     # )
 
     class Meta:

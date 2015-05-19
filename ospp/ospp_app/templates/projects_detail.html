@@ -34,7 +34,6 @@
 <!-- CONTENT -->
 <div id="content" class="projects-detail">
   <div class="wrap clearfix">
-  {# TODO: don't forget to make changes below #}
   {% if project.images %}
     {% for image in project.images %}
       <div class="proj-card col-3 left">
@@ -104,7 +103,7 @@
         </div>
 
         <div class="modal-footer text-center">
-          <input type="submit" name="submit" value="Загрузить">
+          <input class="btn btn-green" type="submit" name="submit" value="Загрузить">
         </div>
       </form>
 
